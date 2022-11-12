@@ -11,7 +11,12 @@ class _MyDesktopBodyState extends State<MyDesktopBody> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green[300],
+      backgroundColor: Colors.deepPurple[300],
+      appBar: AppBar(
+        title: const Text("M Q"),
+        titleSpacing: 200,
+        actions: [],
+      ),
     );
   }
 }

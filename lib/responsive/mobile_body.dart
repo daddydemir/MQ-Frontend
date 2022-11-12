@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mq_frontend/responsive/login/mobile_login.dart';
 
 class MyMobileBody extends StatefulWidget {
   const MyMobileBody({super.key});
@@ -14,7 +15,21 @@ class _MyMobileBodyState extends State<MyMobileBody> {
       backgroundColor: Colors.deepPurple[200],
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("M O B I L E"),
+        title: const Text("M Q"),
+        actions: [
+          const Center(
+            child: Text("Questions"),
+          ),
+          const SizedBox(width: 10),
+          InkWell(
+              onTap: () {
+                Navigator.of(context).pushNamed(MobileLogin.route);
+              },
+              child: const Center(
+                child: Text("Login"),
+              )),
+          const SizedBox(width: 10),
+        ],
       ),
       body: SingleChildScrollView(
         child: SizedBox(
@@ -31,9 +46,9 @@ class _MyMobileBodyState extends State<MyMobileBody> {
                   ),
                 ),
               ),
-              
+
               // another widgets ...
-              
+
               Expanded(
                   child: ListView.builder(
                       itemCount: 8,
