@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mq_frontend/responsive/login/mobile_login.dart';
+import 'package:mq_frontend/responsive/loginpage.dart';
 
 class MyMobileBody extends StatefulWidget {
   const MyMobileBody({super.key});
@@ -22,8 +22,11 @@ class _MyMobileBodyState extends State<MyMobileBody> {
           ),
           const SizedBox(width: 10),
           InkWell(
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            splashFactory: NoSplash.splashFactory,
               onTap: () {
-                Navigator.of(context).pushNamed(MobileLogin.route);
+                Navigator.of(context).pushNamed(LoginPage.route);
               },
               child: const Center(
                 child: Text("Login"),
