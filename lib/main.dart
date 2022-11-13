@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mq_frontend/homepage.dart';
-import 'package:mq_frontend/responsive/loginpage.dart';
+import 'package:mq_frontend/pages/homepage.dart';
+import 'package:mq_frontend/pages/loginpage.dart';
 
 void main() {
   runApp(const MyApp());

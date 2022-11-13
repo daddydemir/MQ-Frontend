@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_web_libraries_in_flutter, non_constant_identifier_names
+
 import 'dart:html';
 
 class Local{

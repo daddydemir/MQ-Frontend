@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mq_frontend/responsive/desktop_body.dart';
-import 'package:mq_frontend/responsive/mobile_body.dart';
+import 'package:mq_frontend/responsive/body/desktop_body.dart';
+import 'package:mq_frontend/responsive/body/mobile_body.dart';
 import 'package:mq_frontend/responsive/responsive_layout.dart';
 
 class HomePage extends StatefulWidget {

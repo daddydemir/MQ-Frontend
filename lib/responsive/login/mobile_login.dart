@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 class MobileLogin extends StatefulWidget {
   const MobileLogin({Key? key}) : super(key: key);
 
-  static const String route = '/login-m';
-
   @override
   State<MobileLogin> createState() => _MobileLoginState();
 }
