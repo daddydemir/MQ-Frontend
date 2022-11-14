@@ -10,13 +10,12 @@ class QuestionApi {
 
   Future Add(Question question) async {
     var url = Uri.parse("${base}question/add");
-
     return await http.post(url,
         headers: {
           "Content-Type": "application/json; charset=UTF-8",
           "Authorization": data.ReadCookie("token")
         },
-        body: question.toJson());
+        body: question.toJson().toString());
   }
 
   Future GetAll() async {

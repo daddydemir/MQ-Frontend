@@ -6,13 +6,14 @@ import 'package:mq_frontend/model/question.dart';
 class QuestionService {
   var api = QuestionApi();
 
-  Future<bool> Add(Question question) async {
+  Future<List> Add(Question question) async {
     var response = await api.Add(question);
+    var r = json.decode(utf8.decode(response.bodyBytes));
 
     if (response.statusCode == 201) {
-      return true;
+      return [true, r['message']];
     }
-    return false;
+    return [false, r['message']];
   }
 
   Future<List<Question>> GetAll() async {
@@ -37,7 +38,7 @@ class QuestionService {
     var response = await api.GetById(id);
     var r = json.decode(utf8.decode(response.bodyBytes));
 
-    if(response.statusCode == 200){
+    if (response.statusCode == 200) {
       question = Question.fromJson(r['data']);
     }
     return question;
