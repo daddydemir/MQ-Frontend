@@ -1,6 +1,6 @@
 // ignore_for_file: unnecessary_this, unnecessary_getters_setters
 
-import 'package:mq_frontend/model/person.dart';
+import 'package:mq_frontend/model/question.dart';
 
 class Answer {
   int? _id;
@@ -8,7 +8,7 @@ class Answer {
   String? _content;
   String? _updateDate;
 
-  Person? person;
+  Question? question;
 
   Answer({int? id, int? questionId, String? content, String? updateDate}) {
     if (id != null) {
@@ -39,7 +39,7 @@ class Answer {
     _questionId = json['QuestionId'];
     _content = json['Content'];
     _updateDate = json['UpdateDate'];
-    person = Person.fromJson(json['Person']);
+    question = Question.fromJson(json['Question']);
   }
 
   Map<String, dynamic> toJson() {

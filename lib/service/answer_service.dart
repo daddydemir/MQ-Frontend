@@ -18,16 +18,19 @@ class AnswerService{
     return false;
   }
 
-  Future<Answer> GetById(var id) async {
-    Answer answer = Answer();
+  Future<List<Answer>> GetById(var id) async {
+    List<Answer> answers = [];
 
     var response = await api.GetById(id);
     var r = json.decode(utf8.decode(response.bodyBytes));
-
+    
     if(response.statusCode == 200){
-      answer = Answer.fromJson(r['data']);
+      var data = r['data'];
+      for(var i in data){
+        answers.add(Answer.fromJson(i));
+      }
     }
 
-    return answer;
+    return answers;
   }
 }
