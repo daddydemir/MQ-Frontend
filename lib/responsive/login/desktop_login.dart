@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:mq_frontend/data/local.dart';
-import 'package:mq_frontend/model/history.dart';
 import 'package:mq_frontend/model/person.dart';
 import 'package:mq_frontend/service/auth_service.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mq_frontend/pages/answerpage.dart';
 import 'package:mq_frontend/pages/homepage.dart';
 import 'package:mq_frontend/pages/loginpage.dart';
 import 'package:mq_frontend/pages/questionaddpage.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
         HomePage.route: (context) => const HomePage(),
         LoginPage.route: (context) => const LoginPage(),
         QuestionAddPage.route: (context) => const QuestionAddPage(),
+        AnswerPage.route: (context) =>  const AnswerPage(id: "1"),
       },
     );
   }
