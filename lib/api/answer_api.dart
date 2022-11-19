@@ -25,7 +25,7 @@ class AnswerApi {
     return await http.get(
       url,
       headers: {
-        "Content-Type": "application/json; charset=UTF-8",
+        // "Content-Type": "application/json; charset=UTF-8",
         "Authorization": data.ReadCookie("token")
       },
     );
