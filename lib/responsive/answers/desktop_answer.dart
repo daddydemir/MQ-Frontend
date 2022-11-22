@@ -123,7 +123,9 @@ class _DesktopAnswerState extends State<DesktopAnswer> {
                   horizontal: MediaQuery.of(context).size.width * 0.1),
               child: HtmlEditor(
                 controller: _controller,
-                htmlToolbarOptions: const HtmlToolbarOptions(),
+                htmlToolbarOptions: const HtmlToolbarOptions(
+                  toolbarType: ToolbarType.nativeGrid,
+                ),
                 htmlEditorOptions: const HtmlEditorOptions(
                   hint: "insane !",
                   darkMode: false,
