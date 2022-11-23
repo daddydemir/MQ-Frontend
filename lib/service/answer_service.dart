@@ -8,14 +8,14 @@ class AnswerService{
 
   var api = AnswerApi();
 
-  Future<bool> Add(Answer answer) async {
+  Future<List> Add(Answer answer) async {
 
     var response = await api.Add(answer);
-
+    var r = json.decode(utf8.decode(response.bodyBytes));
     if(response.statusCode == 201){
-      return true;
+      return [true, r['message']];
     }
-    return false;
+    return [false, r['message']];
   }
 
   Future<List<Answer>> GetById(var id) async {

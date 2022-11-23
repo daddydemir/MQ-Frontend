@@ -16,7 +16,7 @@ class AnswerApi {
           "Content-Type": "application/json; charset=UTF-8",
           "Authorization": data.ReadCookie("token")
         },
-        body: answer.toJson());
+        body: answer.toJson().toString());
   }
 
   Future GetById(var id) async {

@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:mq_frontend/core/check.dart';
 import 'package:mq_frontend/data/local.dart';
 import 'package:mq_frontend/model/person.dart';
 import 'package:mq_frontend/service/auth_service.dart';
@@ -15,6 +18,17 @@ class _DesktopLoginState extends State<DesktopLogin> {
   final _mail = TextEditingController();
   final _password = TextEditingController();
   bool secureText = true;
+  var ctrl = Check();
+
+  @override
+  void initState() {
+    super.initState();
+    if(ctrl.LoginControl()){
+      // oturum zaten açıksa
+      Navigator.of(context).pushNamed('/');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,17 +141,10 @@ class _DesktopLoginState extends State<DesktopLogin> {
 
   void _login() async {
     var service = AuthService();
-    // bool status = await service.Login(_mail.text, _password.text);
-    // if (status){
-    //   print("oturum açma okey.");
-
-    // }
-    // test data
-
-    var data = Local();
-    Person person = Person();
-    person.profileImage = "https://www.donanimhaber.com/images/images/haber/151519/1400x1050yapay-zek-resim-olusturuyor.jpg";
-    person.nickname = "mehmet";
-    data.AddCookie(name: "user", value: jsonEncode(person));
+    bool status = await service.Login(_mail.text, _password.text);
+    if (status){
+      // print("oturum açma okey.");
+      Navigator.of(context).pushReplacementNamed('/');
+    }
   }
 }

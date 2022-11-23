@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:html_editor_enhanced/html_editor.dart';
+import 'package:mq_frontend/core/check.dart';
 import 'package:mq_frontend/data/local.dart';
 import 'package:mq_frontend/model/answer.dart';
 import 'package:mq_frontend/service/answer_service.dart';
@@ -14,13 +15,16 @@ class MobileAnswer extends StatefulWidget {
 class _MobileAnswerState extends State<MobileAnswer> {
   var data = Local();
   List<Answer> answers = [];
-
+  var ctrl = Check();
   final _controller = HtmlEditorController();
 
   @override
   void initState() {
     super.initState();
     _getAll();
+    if (!ctrl.LoginControl()) {
+      Navigator.of(context).pushNamed('login');
+    }
   }
 
   @override
@@ -146,7 +150,10 @@ class _MobileAnswerState extends State<MobileAnswer> {
                 ),
                 child: Text(
                   "S A V E",
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.white, fontSize: 20),
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelLarge
+                      ?.copyWith(color: Colors.white, fontSize: 20),
                 ),
               ),
             ),
@@ -162,5 +169,29 @@ class _MobileAnswerState extends State<MobileAnswer> {
     setState(() {});
   }
 
-  void _addAnswer() async {}
+  void _addAnswer() async {
+    var service = AnswerService();
+    Answer a = Answer();
+    a.questionId = answers[0].questionId;
+    a.content = _controller.getText().toString();
+    List status = await service.Add(a);
+
+    AlertDialog alert =  AlertDialog(
+      title: const Text('Questions'),
+      content: Text(status[1].toString()),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, 'OK'),
+          child: const Text('OK'),
+        ),
+      ],
+    );
+
+     showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 }

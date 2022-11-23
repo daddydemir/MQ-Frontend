@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:mq_frontend/core/check.dart';
 import 'package:mq_frontend/data/local.dart';
 import 'package:mq_frontend/model/answer.dart';
 import 'package:mq_frontend/service/answer_service.dart';
@@ -19,12 +20,15 @@ class DesktopAnswer extends StatefulWidget {
 class _DesktopAnswerState extends State<DesktopAnswer> {
   var data = Local();
   List<Answer> answers = [];
-
+  var ctrl = Check();
   final _controller = HtmlEditorController();
 
   @override
   void initState() {
     super.initState();
+    if (!ctrl.LoginControl()) {
+      Navigator.of(context).pushNamed('login');
+    }
     _getAll();
   }
 
@@ -149,10 +153,9 @@ class _DesktopAnswerState extends State<DesktopAnswer> {
                   child: Text(
                     "S A V E",
                     style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                      color: Colors.white,
-                      fontSize:25,
-                      fontWeight: FontWeight.w400
-                    ),
+                        color: Colors.white,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w400),
                   ),
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(
@@ -181,7 +184,28 @@ class _DesktopAnswerState extends State<DesktopAnswer> {
   }
 
   _addAnswer() async {
-    // var txt = await _controller.getText();
-    
+    var service = AnswerService();
+    Answer a = Answer();
+    a.questionId = answers[0].questionId;
+    a.content = _controller.getText().toString();
+    List status =await service.Add(a);
+
+    AlertDialog alert =  AlertDialog(
+      title: const Text('Questions'),
+      content: Text(status[1].toString()),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context, 'OK'),
+          child: const Text('OK'),
+        ),
+      ],
+    );
+
+     showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

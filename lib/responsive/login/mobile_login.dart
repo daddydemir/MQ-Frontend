@@ -1,4 +1,8 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
+import 'package:mq_frontend/core/check.dart';
+import 'package:mq_frontend/service/auth_service.dart';
 
 class MobileLogin extends StatefulWidget {
   const MobileLogin({Key? key}) : super(key: key);
@@ -11,6 +15,16 @@ class _MobileLoginState extends State<MobileLogin> {
   final _mail = TextEditingController();
   final _password = TextEditingController();
   bool secureText = true;
+  var ctrl = Check();
+
+  @override
+  void initState() {
+    super.initState();
+    if(ctrl.LoginControl()){
+      // oturum zaten açıksa
+      Navigator.of(context).pushNamed('/');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,5 +115,13 @@ class _MobileLoginState extends State<MobileLogin> {
     });
   }
 
-  void _login() {}
+  void _login() async {
+    var service = AuthService();
+    bool status = await service.Login(_mail.text, _password.text);
+    if (status){
+      // print("oturum açma okey.");
+      Navigator.of(context).pushReplacementNamed('/');
+
+    }
+  }
 }

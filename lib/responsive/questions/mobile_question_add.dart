@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:mq_frontend/core/check.dart';
 import 'package:mq_frontend/model/question.dart';
 import 'package:mq_frontend/service/question_service.dart';
 
@@ -14,6 +15,15 @@ class MobileQuestionAdd extends StatefulWidget {
 class _MobileQuestionAddState extends State<MobileQuestionAdd> {
   final _image = TextEditingController();
   final _question = TextEditingController();
+  var ctrl = Check();
+
+  @override
+  void initState() {
+    super.initState();
+    if(!ctrl.LoginControl()){
+      Navigator.of(context).pushNamed('login');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
