@@ -1,6 +1,7 @@
 // ignore_for_file: sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:mq_frontend/core/check.dart';
 import 'package:mq_frontend/data/local.dart';
 import 'package:mq_frontend/model/answer.dart';
@@ -107,7 +108,7 @@ class _DesktopAnswerState extends State<DesktopAnswer> {
                         ),
                         Padding(
                           padding: const EdgeInsets.all(15),
-                          child: Text(answers[index].content.toString() * 100),
+                          child: Html(data: answers[index].content.toString()),
                         ),
                       ]),
                     );

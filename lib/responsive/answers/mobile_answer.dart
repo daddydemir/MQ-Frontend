@@ -4,6 +4,7 @@ import 'package:mq_frontend/core/check.dart';
 import 'package:mq_frontend/data/local.dart';
 import 'package:mq_frontend/model/answer.dart';
 import 'package:mq_frontend/service/answer_service.dart';
+import 'package:flutter_html/flutter_html.dart';
 
 class MobileAnswer extends StatefulWidget {
   const MobileAnswer({super.key});
@@ -111,7 +112,7 @@ class _MobileAnswerState extends State<MobileAnswer> {
                           Padding(
                             padding: const EdgeInsets.all(15),
                             child:
-                                Text(answers[index].content.toString() * 100),
+                                Html(data: answers[index].content.toString()),
                           ),
                         ]),
                       );
@@ -176,7 +177,7 @@ class _MobileAnswerState extends State<MobileAnswer> {
     a.content = _controller.getText().toString();
     List status = await service.Add(a);
 
-    AlertDialog alert =  AlertDialog(
+    AlertDialog alert = AlertDialog(
       title: const Text('Questions'),
       content: Text(status[1].toString()),
       actions: [
@@ -187,7 +188,7 @@ class _MobileAnswerState extends State<MobileAnswer> {
       ],
     );
 
-     showDialog(
+    showDialog(
       context: context,
       builder: (BuildContext context) {
         return alert;
